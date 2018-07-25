@@ -101,7 +101,14 @@ module.exports = function (schema, options) {
 
     if (options.overrideMethods) {
         var overrideItems = options.overrideMethods;
-        var overridableMethods = ['count', 'find', 'findOne', 'findOneAndUpdate', 'update'];
+        var overridableMethods = [
+          'count', 'countDocuments', 'estimatedDocumentCount',
+          'find', 'findOne', 'findOneAndUpdate', 'update',
+        ];
+        var methods2extend = [
+          'count', 'countDocuments', 'estimatedDocumentCount',
+          'find', 'findOne',
+        ]
         var finalList = [];
 
         if ((typeof overrideItems === 'string' || overrideItems instanceof String) && overrideItems === 'all') {
@@ -121,7 +128,7 @@ module.exports = function (schema, options) {
         }
 
         finalList.forEach(function(method) {
-            if (method === 'count' || method === 'find' || method === 'findOne') {
+            if (methods2extend.includes(method)) {
                 schema.statics[method] = function () {
                     return Model[method].apply(this, arguments).where('deleted').ne(true);
                 };

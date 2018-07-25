@@ -386,6 +386,24 @@ describe("check not overridden static methods", function () {
         });
     });
 
+    it("countDocuments() -> should return 3 documents", function (done) {
+        TestModel.countDocuments(function (err, count) {
+            should.not.exist(err);
+
+            count.should.equal(3);
+            done();
+        });
+    });
+
+    it("estimatedDocumentCount() -> should return 3 documents", function (done) {
+        TestModel.estimatedDocumentCount(function (err, count) {
+            should.not.exist(err);
+
+            count.should.equal(3);
+            done();
+        });
+    });
+
     it("find() -> should return 3 documents", function (done) {
         TestModel.find(function (err, documents) {
             should.not.exist(err);
@@ -464,6 +482,60 @@ describe("check overridden static methods: { overrideMethods: 'all' }", function
 
     it("countWithDeleted() -> should return 3 documents", function (done) {
         TestModel.countWithDeleted(function (err, count) {
+            should.not.exist(err);
+
+            count.should.equal(3);
+            done();
+        });
+    });
+
+    it("countDocuments() -> should return 1 documents", function (done) {
+        TestModel.countDocuments(function (err, count) {
+            should.not.exist(err);
+
+            count.should.equal(1);
+            done();
+        });
+    });
+
+    it("countDocumentsDeleted() -> should return 2 documents", function (done) {
+        TestModel.countDocumentsDeleted(function (err, count) {
+            should.not.exist(err);
+
+            count.should.equal(2);
+            done();
+        });
+    });
+
+    it("countDocumentsWithDeleted() -> should return 3 documents", function (done) {
+        TestModel.countDocumentsWithDeleted(function (err, count) {
+            should.not.exist(err);
+
+            count.should.equal(3);
+            done();
+        });
+    });
+
+    it("estimatedDocumentCount() -> should return 1 document", function (done) {
+        TestModel.estimatedDocumentCount(function (err, count) {
+            should.not.exist(err);
+
+            count.should.equal(1);
+            done();
+        });
+    });
+
+    it("estimatedDocumentCountDeleted() -> should return 2 documents", function (done) {
+        TestModel.estimatedDocumentCountDeleted(function (err, count) {
+            should.not.exist(err);
+
+            count.should.equal(2);
+            done();
+        });
+    });
+
+    it("estimatedDocumentCountWithDeleted() -> should return 3 documents", function (done) {
+        TestModel.estimatedDocumentCountWithDeleted(function (err, count) {
             should.not.exist(err);
 
             count.should.equal(3);
